@@ -1,0 +1,45 @@
+
+public class Masina {
+	
+	private  String matriculare;
+	private  int distanta;
+	private int pret;
+	public  int nrTel;
+	
+	public String getMatriculare()
+	{
+		return matriculare;
+	}
+	public void setMatriculare(String matriculare)
+	{
+		this.matriculare=matriculare;
+	}
+	public int getDistanta()
+	{
+		return distanta;
+	}
+	public void setDistanta(int distanta)
+	{
+		this.distanta=distanta;
+	}
+	public int getPret()
+	{
+		return pret;
+	}
+	public void setPret(int pret)
+	{
+		this.pret=pret;
+	}
+	public  int getNrTel()
+	{
+		return nrTel;
+	}
+	public  void setNrTel(int nrTel)
+	{
+		this.nrTel = nrTel;
+	}
+	
+	public String toString() {
+		return "Masina [nr matriculare=" + matriculare + ", distanta=" + distanta + ", pret=" + pret + "]";
+	}
+}
