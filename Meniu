@@ -1,0 +1,134 @@
+import java.io.DataOutputStream;
+import java.io.FileOutputStream;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Scanner;
+
+public class Meniu {
+	public static String getLineFromKeyboard(String textDeAfisat) {
+		System.out.print(textDeAfisat);
+
+		Scanner keyb = new Scanner(System.in);
+		return keyb.nextLine();
+
+	}
+
+	public static int getIntFromKeyboard(String textDeAfisat) {
+		System.out.print(textDeAfisat);
+
+		Scanner keyb = new Scanner(System.in);
+		return keyb.nextInt();
+	}
+
+	public static double getDoubleFromKeyboard(String textDeAfisat) {
+		System.out.print(textDeAfisat);
+
+		Scanner keyb = new Scanner(System.in);
+		return keyb.nextDouble();
+	}
+
+
+
+	public static void main(String[] args) {
+		System.out.println("     MENIU     ^");
+		int nrMasini;
+
+		nrMasini = getIntFromKeyboard("Introduceti numarul de masini : ");
+
+		if (nrMasini < 1) {
+			do {
+				nrMasini = getIntFromKeyboard("Numarul de masini introdus este prea mic. Introduceti alt numar: ");
+			} while (nrMasini < 1);
+		}
+
+		List<Masina> listaMasina = new ArrayList<>();
+
+		System.out.println("\nIntroduceti datele masinilor:");
+		for (int i = 0; i < nrMasini; i++) {
+			Masina masina = new Masina();
+
+			System.out.println("\n Masina" + (i + 1));
+
+			;
+			masina.setMatriculare(getLineFromKeyboard("Nr de matriculare: "));
+			masina.setDistanta(getIntFromKeyboard("Distanta pana in centru: "));
+			masina.setPret(getIntFromKeyboard("Pret: "));
+			masina.setNrTel(getIntFromKeyboard("Nr_tel: "));
+			
+			listaMasina.add(masina);
+		}
+		run(listaMasina);
+	}
+
+	 static void printMenu()
+	    {
+	        String menu = "";
+	        menu += "Menu:\n";
+	        menu += "1. Client\n";
+	        menu += "2. Creaza cerere\n";
+	        menu += "3. Sofer\n";
+	        menu += "0. Iesire\n";
+	        System.out.print(menu);
+	    }
+	 static void run(List<Masina> masina)
+	    {
+	        while(true)
+	        {
+	            printMenu();
+	            boolean ok = false;
+	            int optiune = -1;
+	            while(!ok)
+	            {
+	                try 
+	                {
+	                    optiune = getIntFromKeyboard("");
+	                }
+	                catch(java.util.InputMismatchException e)
+	                {
+	                	getIntFromKeyboard("");
+	                    System.out.println("Optiune invalida");
+	                    continue;
+	                }
+	                ok = true;
+	            }
+
+	            switch(optiune)
+	            {
+	                case 0:
+	                    return;
+	                case 1:
+	                	client(masina);
+	                case 2:
+	                	creazaCerere(null);
+	                case 3:
+	                	sofer(null);
+	                    break;
+	            }
+	        }
+	    }
+	
+	
+
+	static void client(List<Masina> masina)
+	{
+		masina.sort(Comparator.comparing(Masina::getPret));
+		masina.forEach(System.out::println);
+	}
+	
+	static void creazaCerere(List<Masina> masina)
+	{
+		int cerere;
+		cerere = getIntFromKeyboard("Alegeti cursa : ");
+		System.out.println("Ai selectat cursa" + cerere);
+		
+	}
+	
+	static void sofer(List<Masina> masina)
+	{
+		System.out.println("Ai primit cererea");
+	}
+
+
+}
